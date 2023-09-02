@@ -8,7 +8,8 @@ export const chatStyle = StyleSheet.create({
   },
   header: {
     width: "100%",
-    height: height * 8 / 100,
+    // height: height * 8 / 100,
+    height: 60,
     flexDirection: "row",
     alignItems: "center",
     gap: 1,
@@ -135,6 +136,7 @@ export const chatStyle = StyleSheet.create({
     paddingBottom:60,
     justifyContent:"flex-end",
     zIndex:-1,
+    paddingTop: 62,
   },
   chatBoxRight:{
     height:"auto",
@@ -162,7 +164,8 @@ export const chatStyle = StyleSheet.create({
   chatTime:{
     right:0,
     color:"#89bdb4",
-    textAlign:"right"
+    textAlign:"right",
+    fontSize: 12,
   },
   backGrounImage:{
     position:"absolute",

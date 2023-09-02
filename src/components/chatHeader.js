@@ -19,7 +19,11 @@ export default function ChatHeader({item, navigation}) {
           />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={chatStyle.nameButton}>
+      <TouchableOpacity style={chatStyle.nameButton}
+        onPress={() => {
+          navigation.navigate("Profile", {item:item});
+        }}
+      >
         <View style={chatStyle.nameContent}>
           <Text style={chatStyle.nameText}>{item.name}</Text>
           <Text style={chatStyle.lastSeen}>Last seen today at 4:13 pm</Text>

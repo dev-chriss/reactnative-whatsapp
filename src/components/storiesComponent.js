@@ -6,9 +6,10 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { routeStyles } from "../styles/routeStyle";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import { useDispatch, useSelector } from 'react-redux';
 
 const data = [
   {
@@ -148,13 +149,13 @@ const GetSeenStories = ({ item }) =>
     </TouchableOpacity>
   ) : null;
 
-const GetAllStories = () => (
+const GetAllStories = ({storiesData}) => (
   <View>
     <TouchableOpacity style={routeStyles.storiesBox}>
       <TouchableOpacity style={routeStyles.storiesFoto}>
         <View style={routeStyles.storiesCircleOp}>
           <Image
-            source={{ uri: data[0].image }}
+            source={{ uri: storiesData[0]?.image }}
             style={routeStyles.storiesFoto}
           />
           <View style={routeStyles.addIconBox}>
@@ -167,30 +168,60 @@ const GetAllStories = () => (
         <Text style={routeStyles.storiesDate}>Touch to add new story</Text>
       </View>
     </TouchableOpacity>
+
     <Text
-      style={{ height: 25, fontSize: 16, color: "#8e9ba4", marginLeft: 10 }}
+      style={{ height: 25, fontSize: 16, color: "#8e9ba4", marginLeft: 10, marginTop: 20 }}
     >
       Recent updates
     </Text>
-    {data.map((item) => (
-      <GetStories item={item} key={item._id} />
-    ))}
+
+    {storiesData?.length ? storiesData.map((item) => 
+      (
+        <>
+         
+          <GetStories item={item} key={item._id} />
+        </>
+      )) :  (
+        <Text style={routeStyles.dataNotFound}>Data not found</Text>
+      )
+    }
+
     <Text
-      style={{ height: 25, fontSize: 16, color: "#8e9ba4", marginLeft: 10 }}
+      style={{ height: 25, fontSize: 16, color: "#8e9ba4", marginLeft: 10, marginTop: 30 }}
     >
       Viewed updates
     </Text>
-    {data.map((item) => (
-      <GetSeenStories item={item} key={item._id} />
-    ))}
+    {storiesData?.length ? storiesData.map((item) => 
+      (
+        <>
+          
+          <GetSeenStories item={item} key={item._id} />
+        </>
+      )) :  (
+        <Text style={routeStyles.dataNotFound}>Data not found</Text>
+      )
+    }
   </View>
 );
 
 export default function StoriesComponent() {
+  const searchPhrase = useSelector((state) => state.search.searchPhrase);
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    if (searchPhrase) {
+      setFilteredData(data.filter(item => 
+        String(item.name).toLowerCase().includes(searchPhrase.toLowerCase())
+      )) 
+    } else {
+      setFilteredData(data);
+    }
+  }, [searchPhrase]);
+
   return (
     <View style={routeStyles.storiesContent}>
       <ScrollView>
-        <GetAllStories />
+        <GetAllStories storiesData={filteredData} />
       </ScrollView>
     </View>
   );

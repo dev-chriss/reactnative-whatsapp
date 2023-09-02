@@ -33,7 +33,7 @@ export default function ChatMessage({ setMessages, messages }) {
         style={chatStyle.voiceMessageButton}
         onPress={() => {
           const now = new Date();
-          setMessages([...messages,{ message: message, time: `${now.getHours()}:${now.getMinutes()}`}]);
+          setMessages([...messages,{ id: messages.length + 1, sender: 'abc', message: message, time: `${now.getHours()}:${now.getMinutes()}`}]);
           setMessage("");
         }}
       >

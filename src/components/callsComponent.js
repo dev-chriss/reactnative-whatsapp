@@ -6,11 +6,12 @@ import {
     TouchableOpacity,
     ScrollView,
   } from "react-native";
-  import React from "react";
+  import React, { useEffect, useState } from "react";
   import { routeStyles } from "../styles/routeStyle";
   import AntDesign from "react-native-vector-icons/AntDesign";
   import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-  
+  import { useDispatch, useSelector } from 'react-redux';
+
   const data = [
     {
       "_id": "647350c309379242e93fc66f",
@@ -149,8 +150,8 @@ import {
     }
   };
   
-  const GetStories = ({ item }) =>
-    (
+  const GetCall = ({ item }) => {
+    return(
       <TouchableOpacity style={routeStyles.storiesBox}>
         <TouchableOpacity style={routeStyles.storiesFoto}>
           <View style={routeStyles.storiesCircleOp}>
@@ -163,40 +164,66 @@ import {
             {item.isGet ? <AntDesign name="arrowdown" style={[routeStyles.getCallDetailIcon, item.isActive ? {color:"#25d065"} : {color:"#f06476"}]} /> : <AntDesign name="arrowdown" style={[routeStyles.setCallDetailIcon, item.isActive ? {color:"#25d065"} : {color:"#f06476"}]} />}
              <Text style={routeStyles.storiesDate}>{getDate(item.registered)}</Text></View>
         </View>
-        {item.isVideo ? <MaterialIcons name="videocam" style={routeStyles.callIcon}/> : <MaterialIcons name="call" style={routeStyles.callIcon}/>}
+        {item.isVideo ? 
+          <MaterialIcons name="videocam" style={routeStyles.callIcon}/> : 
+          <MaterialIcons name="call" style={routeStyles.callIcon}/>}
         
       </TouchableOpacity>
     );
+  };
+    
   
-  const GetAllStories = () => (
-    <View>
-      <TouchableOpacity style={routeStyles.storiesBox}>
-        <TouchableOpacity style={routeStyles.storiesFoto}>
-          <View style={routeStyles.CallCircleOp}>
-          <MaterialIcons name="link" style={routeStyles.callLink} />
+  const GetAllCall = ({callData}) => {
+    return (
+      <View>
+        <TouchableOpacity style={routeStyles.storiesBox}>
+          <TouchableOpacity style={routeStyles.storiesFoto}>
+            <View style={routeStyles.CallCircleOp}>
+            <MaterialIcons name="link" style={routeStyles.callLink} />
+            </View>
+          </TouchableOpacity>
+          <View style={routeStyles.storiesDetails}>
+            <Text style={routeStyles.storiesName}>Create call link</Text>
+            <Text style={routeStyles.storiesDate}>Share a link for your WhatsApp call</Text>
           </View>
         </TouchableOpacity>
-        <View style={routeStyles.storiesDetails}>
-          <Text style={routeStyles.storiesName}>Create call link</Text>
-          <Text style={routeStyles.storiesDate}>Share a link for your WhatsApp call</Text>
-        </View>
-      </TouchableOpacity>
-      <Text
-        style={{ height: 25, fontSize: 16, color: "#8e9ba4", marginLeft: 10, }}
-      >
-        Recent
-      </Text>
-      {data.map((item) => (
-        <GetStories item={item} key={item._id} />
-      ))}
-    </View>
-  );
+        
+        {callData?.length ? callData.map((item) => 
+           (
+            <>
+              <Text
+                style={{ height: 25, fontSize: 16, color: "#8e9ba4", marginLeft: 10, }}
+              >
+                Recent
+              </Text>
+              <GetCall item={item} key={item._id} />
+            </>
+          )) :  (
+            <Text style={routeStyles.dataNotFound}>Data not found</Text>
+          )
+        }
+      </View>
+    )
+  };
   
   export default function CallsComponent() {
+    const searchPhrase = useSelector((state) => state.search.searchPhrase);
+    const [filteredData, setFilteredData] = useState([]);
+
+    useEffect(() => {
+      if (searchPhrase) {
+        setFilteredData(data.filter(item => 
+          String(item.name).toLowerCase().includes(searchPhrase.toLowerCase())
+        ))
+      } else {
+        setFilteredData(data);
+      }
+    }, [searchPhrase]);
+
     return (
       <View style={routeStyles.storiesContent}>
         <ScrollView>
-          <GetAllStories />
+          <GetAllCall callData={filteredData} />
         </ScrollView>
       </View>
     );

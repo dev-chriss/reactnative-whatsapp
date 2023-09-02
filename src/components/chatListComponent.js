@@ -6,16 +6,17 @@ import {
   Image,
   SafeAreaView,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { routeStyles } from "../styles/routeStyle";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { useDispatch, useSelector } from 'react-redux'
 
-const data = [
+let data = [
     {
       "_id": "64712fbf112f1db7ed7f029a",
       "image": "https://picsum.photos/id/1/80/80",
       "name": "Willie Russo",
-      "about": "anim minim pariatur",
+      "about": "Her daily goal was to improve on yesterday",
       "isActive": true,
       "registered": "2023-05-24 05:48"
     },
@@ -23,7 +24,7 @@ const data = [
       "_id": "64712fbfbb7b9b873c30ac61",
       "image": "https://picsum.photos/id/29/80/80",
       "name": "Hahn Beach",
-      "about": "commodo Lorem nostrud",
+      "about": "I hate cassowaries inside a house",
       "isActive": false,
       "registered": "2023-05-24 10:33"
     },
@@ -31,7 +32,7 @@ const data = [
       "_id": "64712fbf6f8ffb55cb07cf22",
       "image": "https://picsum.photos/id/63/80/80",
       "name": "Jasmine Avila",
-      "about": "Lorem ad excepteur velit",
+      "about": "Oh, ducks are SO BIG!",
       "isActive": true,
       "registered": "2023-05-24 13:38"
     },
@@ -39,7 +40,7 @@ const data = [
       "_id": "64712fbf1f035bf4bf54d8c2",
       "image": "https://picsum.photos/id/52/80/80",
       "name": "Thomas Kramer",
-      "about": "laboris aute et irure voluptate",
+      "about": "I like dogs inside an onion",
       "isActive": true,
       "registered": "2023-05-24 18:52"
     },
@@ -47,7 +48,7 @@ const data = [
       "_id": "64712fbf12f7297a9d1760cb",
       "image": "https://picsum.photos/id/41/80/80",
       "name": "Casandra Cabrera",
-      "about": "amet non nisi aute duis",
+      "about": "Awwww! The gharial will kick that laptop",
       "isActive": false,
       "registered": "2023-05-26 22:09"
     },
@@ -55,7 +56,7 @@ const data = [
       "_id": "64712fbf57d1294bbce80635",
       "image": "https://picsum.photos/id/42/80/80",
       "name": "Mabel Gilbert",
-      "about": "aliqua ullamco sint tempor",
+      "about": "This hyrax is so helpful!",
       "isActive": true,
       "registered": "2023-05-27 00:40"
     },
@@ -63,7 +64,7 @@ const data = [
       "_id": "64712fbf153eafd807a10e58",
       "image": "https://picsum.photos/id/8/80/80",
       "name": "Atkins Walsh",
-      "about": "magna aliquip est eiusmod",
+      "about": "There must be at least 53 hippos over there!",
       "isActive": false,
       "registered": "2023-05-02 04:55"
     },
@@ -71,7 +72,7 @@ const data = [
       "_id": "64712fbfa32108a582eea1ce",
       "image": "https://picsum.photos/id/72/80/80",
       "name": "Fuentes Montgomery",
-      "about": "veniam nostrud qui ut",
+      "about": "That meerkat is so cute!",
       "isActive": true,
       "registered": "2023-05-27 13:57"
     },
@@ -79,7 +80,7 @@ const data = [
       "_id": "64712fbf7098fd85acae102e",
       "image": "https://picsum.photos/id/88/80/80",
       "name": "Knight Roberson",
-      "about": "ad adipisicing do",
+      "about": "Awwww! A rabbit will grin at that house",
       "isActive": true,
       "registered": "2023-05-27 09:23"
     },
@@ -87,7 +88,7 @@ const data = [
       "_id": "64712fbfb6694fc5dea8fa21",
       "image": "https://picsum.photos/id/85/80/80",
       "name": "Daniels Goodman",
-      "about": "laborum minim consequat",
+      "about": "I hate cassowaries inside a keyboard",
       "isActive": true,
       "registered": "2023-05-27 20:56"
     }
@@ -136,8 +137,8 @@ const getDate = (registered) => {
 
 const onChatBox = (item, navigation) => {
   navigation.navigate("ChatScreen", {item:item});
- // navigation.navigate('ChatScreen', {item: item})
 }
+
 const GetChatList = ({ item, navigation }) => (
   <TouchableOpacity style={routeStyles.chatBox} onPress={()=>onChatBox(item,navigation)}>
     <TouchableOpacity style={routeStyles.fotoButton}>
@@ -170,13 +171,29 @@ const GetChatList = ({ item, navigation }) => (
   </TouchableOpacity>
 );
 export default function ChatListComponent({navigation}) {
+  const searchPhrase = useSelector((state) => state.search.searchPhrase);
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    if (searchPhrase) {
+      setFilteredData(data.filter(item => 
+        String(item.name).toLowerCase().includes(searchPhrase.toLowerCase()) || 
+        String(item.about).toLowerCase().includes(searchPhrase.toLowerCase())
+      ))
+    } else {
+      setFilteredData(data);
+    }
+  }, [searchPhrase]);
+
   return (
     <View style={routeStyles.listContainer}>
-      <FlatList
-        data={data}
+      {!filteredData.length? (<Text style={routeStyles.dataNotFound}>Data not found</Text>) :
+      (<FlatList
+        data={filteredData}
         renderItem={({ item }) => <GetChatList item={item} navigation={navigation} />}
         keyExtractor={(item) => item._id}
-      />
+      />)
+    }
     </View>
   );
 }

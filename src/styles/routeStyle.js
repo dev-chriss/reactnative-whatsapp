@@ -8,7 +8,8 @@ export const routeStyles = StyleSheet.create({
     justifyContent: "center",
   },
   topLinksContent: {
-    height: (height * 8.4) / 100,
+    // height: (height * 8.4) / 100,
+    height: 65,
     width: "100%",
     backgroundColor: "#1f2c34",
     justifyContent: "space-between",
@@ -233,4 +234,11 @@ export const routeStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  dataNotFound: {
+    marginTop: 20,
+    fontSize:15,
+    color: "white",
+    width:'100%',
+    textAlign: 'center',
+  }
 });
