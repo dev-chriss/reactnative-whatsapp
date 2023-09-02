@@ -16,7 +16,7 @@ let data = [
       "_id": "64712fbf112f1db7ed7f029a",
       "image": "https://picsum.photos/id/1/80/80",
       "name": "Willie Russo",
-      "about": "Her daily goal was to improve on yesterday",
+      "lastmessage": "Her daily goal was to improve on yesterday",
       "isActive": true,
       "registered": "2023-05-24 05:48"
     },
@@ -24,7 +24,7 @@ let data = [
       "_id": "64712fbfbb7b9b873c30ac61",
       "image": "https://picsum.photos/id/29/80/80",
       "name": "Hahn Beach",
-      "about": "I hate cassowaries inside a house",
+      "lastmessage": "I hate cassowaries inside a house",
       "isActive": false,
       "registered": "2023-05-24 10:33"
     },
@@ -32,7 +32,7 @@ let data = [
       "_id": "64712fbf6f8ffb55cb07cf22",
       "image": "https://picsum.photos/id/63/80/80",
       "name": "Jasmine Avila",
-      "about": "Oh, ducks are SO BIG!",
+      "lastmessage": "Oh, ducks are SO BIG!",
       "isActive": true,
       "registered": "2023-05-24 13:38"
     },
@@ -40,7 +40,7 @@ let data = [
       "_id": "64712fbf1f035bf4bf54d8c2",
       "image": "https://picsum.photos/id/52/80/80",
       "name": "Thomas Kramer",
-      "about": "I like dogs inside an onion",
+      "lastmessage": "I like dogs inside an onion",
       "isActive": true,
       "registered": "2023-05-24 18:52"
     },
@@ -48,7 +48,7 @@ let data = [
       "_id": "64712fbf12f7297a9d1760cb",
       "image": "https://picsum.photos/id/41/80/80",
       "name": "Casandra Cabrera",
-      "about": "Awwww! The gharial will kick that laptop",
+      "lastmessage": "Awwww! The gharial will kick that laptop",
       "isActive": false,
       "registered": "2023-05-26 22:09"
     },
@@ -56,7 +56,7 @@ let data = [
       "_id": "64712fbf57d1294bbce80635",
       "image": "https://picsum.photos/id/42/80/80",
       "name": "Mabel Gilbert",
-      "about": "This hyrax is so helpful!",
+      "lastmessage": "This hyrax is so helpful!",
       "isActive": true,
       "registered": "2023-05-27 00:40"
     },
@@ -64,7 +64,7 @@ let data = [
       "_id": "64712fbf153eafd807a10e58",
       "image": "https://picsum.photos/id/8/80/80",
       "name": "Atkins Walsh",
-      "about": "There must be at least 53 hippos over there!",
+      "lastmessage": "There must be at least 53 hippos over there!",
       "isActive": false,
       "registered": "2023-05-02 04:55"
     },
@@ -72,7 +72,7 @@ let data = [
       "_id": "64712fbfa32108a582eea1ce",
       "image": "https://picsum.photos/id/72/80/80",
       "name": "Fuentes Montgomery",
-      "about": "That meerkat is so cute!",
+      "lastmessage": "That meerkat is so cute!",
       "isActive": true,
       "registered": "2023-05-27 13:57"
     },
@@ -80,7 +80,7 @@ let data = [
       "_id": "64712fbf7098fd85acae102e",
       "image": "https://picsum.photos/id/88/80/80",
       "name": "Knight Roberson",
-      "about": "Awwww! A rabbit will grin at that house",
+      "lastmessage": "Awwww! A rabbit will grin at that house",
       "isActive": true,
       "registered": "2023-05-27 09:23"
     },
@@ -88,7 +88,7 @@ let data = [
       "_id": "64712fbfb6694fc5dea8fa21",
       "image": "https://picsum.photos/id/85/80/80",
       "name": "Daniels Goodman",
-      "about": "I hate cassowaries inside a keyboard",
+      "lastmessage": "I hate cassowaries inside a keyboard",
       "isActive": true,
       "registered": "2023-05-27 20:56"
     }
@@ -162,9 +162,9 @@ const GetChatList = ({ item, navigation }) => (
           />
         )}
         <Text style={routeStyles.message}>
-          {item.about.length > 36
-            ? item.about.slice(0, 36) + "..."
-            : item.about}
+          {item.lastmessage.length > 36
+            ? item.lastmessage.slice(0, 36) + "..."
+            : item.lastmessage}
         </Text>
       </View>
     </View>
@@ -178,7 +178,7 @@ export default function ChatListComponent({navigation}) {
     if (searchPhrase) {
       setFilteredData(data.filter(item => 
         String(item.name).toLowerCase().includes(searchPhrase.toLowerCase()) || 
-        String(item.about).toLowerCase().includes(searchPhrase.toLowerCase())
+        String(item.lastmessage).toLowerCase().includes(searchPhrase.toLowerCase())
       ))
     } else {
       setFilteredData(data);
