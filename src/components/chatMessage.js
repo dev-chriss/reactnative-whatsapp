@@ -38,12 +38,8 @@ export default function ChatMessage({ setMessages, messages }) {
         style={chatStyle.voiceMessageButton}
         onPress={() => {
           const now = new Date();
-<<<<<<< HEAD
           dispatch(allActions.messages.addMessage({ id: messages.length + 1, sender: 'abc', message: message, time: `${now.getHours()}:${now.getMinutes()}`}));
           // setMessages([...messages,{ id: messages.length + 1, sender: 'abc', message: message, time: `${now.getHours()}:${now.getMinutes()}`}]);
-=======
-          setMessages([...messages,{ id: messages.length + 1, sender: 'abc', message: message, time: `${now.getHours()}:${now.getMinutes()}`}]);
->>>>>>> e5ed6fd (first commit)
           setMessage("");
         }}
       >

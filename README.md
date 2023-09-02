@@ -33,12 +33,9 @@ Make sure to run npm install to install the package.
 ```bash
 npm run android
 ```
-<<<<<<< HEAD
 
 or if want to open metro 
 
 ```bash
 npm start
 ```
-=======
->>>>>>> e5ed6fd (first commit)

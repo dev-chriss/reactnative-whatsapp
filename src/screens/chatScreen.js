@@ -4,7 +4,6 @@ import { chatStyle } from "../styles/chatStyle";
 import ChatHeader from "../components/chatHeader";
 import ChatContainer from "../components/chatContainer";
 import ChatMessage from "../components/chatMessage";
-<<<<<<< HEAD
 import { useDispatch, useSelector } from 'react-redux'
 import allActions from "../store/actions";
 
@@ -30,20 +29,6 @@ export default function ChatScreen({ navigation, route }) {
     }
   }, [messagesRedux]);
 
-=======
-
-export default function ChatScreen({ navigation, route }) {
-  const [messages, setMessages] = useState([])
-
-  useEffect(() => {
-    fetch(`https://private-3f049-chatyoripe.apiary-mock.com/chats/questions`).then((data) => {
-      return data.json().then((data)=>{
-        setMessages(data)
-      })
-    })
-  }, [])
-
->>>>>>> e5ed6fd (first commit)
   return (
     <View style={chatStyle.container}>
       <Image

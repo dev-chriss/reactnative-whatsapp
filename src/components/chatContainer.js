@@ -7,7 +7,6 @@ import allActions from "../store/actions";
 const now = new Date();
 
 export default function ChatContainer({ messages }) {
-<<<<<<< HEAD
   const dispatch = useDispatch()
   const senderId = 'abc';
   const messagesRedux = useSelector((state) => state.messages.data);
@@ -27,16 +26,6 @@ export default function ChatContainer({ messages }) {
         <View
           style={
             item?.sender === senderId ? chatStyle.chatBoxRight : chatStyle.chatBoxLeft
-=======
-
-  const senderId = 'abc';
-  
-    const renderMessage = ({ item }) => (
-      <TouchableOpacity onLongPress={() => console.log('message longpress')}>
-        <View
-          style={
-            item.sender === senderId ? chatStyle.chatBoxRight : chatStyle.chatBoxLeft
->>>>>>> e5ed6fd (first commit)
           }
         >
             <View>
@@ -44,19 +33,14 @@ export default function ChatContainer({ messages }) {
                 {item?.message}
               </Text>
             </View>
-<<<<<<< HEAD
             <View style={chatStyle.chatBottomText}>
               <Text style={chatStyle.chatMarked}>{item?.marked ? 'marked' : 'not marked'} </Text>
               <Text style={chatStyle.chatTime}>{item?.time} pm</Text>
             </View>
-=======
-            <Text style={chatStyle.chatTime}>{item.time} pm</Text>
->>>>>>> e5ed6fd (first commit)
           
         </View>
       </TouchableOpacity>
     );
-<<<<<<< HEAD
   }
 
   return (
@@ -66,16 +50,6 @@ export default function ChatContainer({ messages }) {
         renderItem={renderMessage}
         keyExtractor={(item) => item?.id.toString()}
       />
-=======
-  
-return (
-    <View style={chatStyle.chatContainer}>
-        <FlatList
-          data={messages}
-          renderItem={renderMessage}
-          keyExtractor={(item) => item.id.toString()}
-        />
->>>>>>> e5ed6fd (first commit)
     </View>
   );
 
