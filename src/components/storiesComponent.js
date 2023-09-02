@@ -177,10 +177,7 @@ const GetAllStories = ({storiesData}) => (
 
     {storiesData?.length ? storiesData.map((item) => 
       (
-        <>
-         
-          <GetStories item={item} key={item._id} />
-        </>
+        <GetStories item={item} key={item._id} />
       )) :  (
         <Text style={routeStyles.dataNotFound}>Data not found</Text>
       )
@@ -191,12 +188,10 @@ const GetAllStories = ({storiesData}) => (
     >
       Viewed updates
     </Text>
+
     {storiesData?.length ? storiesData.map((item) => 
       (
-        <>
-          
-          <GetSeenStories item={item} key={item._id} />
-        </>
+        <GetSeenStories item={item} key={item._id} />
       )) :  (
         <Text style={routeStyles.dataNotFound}>Data not found</Text>
       )

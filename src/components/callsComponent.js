@@ -188,16 +188,15 @@ import {
           </View>
         </TouchableOpacity>
         
+        <Text
+          style={{ height: 25, fontSize: 16, color: "#8e9ba4", marginLeft: 10, }}
+        >
+          Recent
+        </Text>
+
         {callData?.length ? callData.map((item) => 
            (
-            <>
-              <Text
-                style={{ height: 25, fontSize: 16, color: "#8e9ba4", marginLeft: 10, }}
-              >
-                Recent
-              </Text>
-              <GetCall item={item} key={item._id} />
-            </>
+            <GetCall item={item} key={item._id} />
           )) :  (
             <Text style={routeStyles.dataNotFound}>Data not found</Text>
           )
