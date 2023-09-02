@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
-import search from "./search";
-
+import searchReducer from "./searchReducer";
+import messagesReducer from "./messagesReducer"
 const rootReducer = combineReducers({
-    search: search,
+    search: searchReducer,
+    messages: messagesReducer,
 })
 
 export default rootReducer

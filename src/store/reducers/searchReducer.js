@@ -6,12 +6,12 @@ const searchReducer = (state = initialState, action) => {
     switch(action.type){
         case "SET_SEARCHPHRASE":
             return {
-                // ...state,
+                ...state,
                 searchPhrase: action.searchPhrase
             }
         case "RESET_SEARCHPHRASE":
             return {
-                // ...state,
+                ...state,
                 searchPhrase: ""
             }
         default:

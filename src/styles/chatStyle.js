@@ -161,10 +161,20 @@ export const chatStyle = StyleSheet.create({
     fontSize: 16,
     fontWeight:"600",
   },
+  chatBottomText:{
+    flexDirection:"row",
+    justifyContent:"space-between",
+  },
   chatTime:{
     right:0,
     color:"#89bdb4",
     textAlign:"right",
+    fontSize: 12,
+  },
+  chatMarked:{
+    left:0,
+    color:"#89bdb4",
+    textAlign:"left",
     fontSize: 12,
   },
   backGrounImage:{
