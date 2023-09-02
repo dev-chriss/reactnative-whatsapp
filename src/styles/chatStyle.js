@@ -170,12 +170,15 @@ export const chatStyle = StyleSheet.create({
     color:"#89bdb4",
     textAlign:"right",
     fontSize: 12,
+<<<<<<< HEAD
   },
   chatMarked:{
     left:0,
     color:"#89bdb4",
     textAlign:"left",
     fontSize: 12,
+=======
+>>>>>>> e5ed6fd (first commit)
   },
   backGrounImage:{
     position:"absolute",
