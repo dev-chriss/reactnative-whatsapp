@@ -5,7 +5,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useDispatch, useSelector } from 'react-redux'
 import allActions from "../store/actions";
 
-export default function ChatMessage({ setMessages, messages }) {
+export default function ChatMessage({ messages }) {
   const dispatch = useDispatch()
   const [message, setMessage] = useState("");
 

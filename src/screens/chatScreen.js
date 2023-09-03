@@ -44,7 +44,7 @@ export default function ChatScreen({ navigation, route }) {
       />
       <ChatHeader item={route.params.item} navigation={navigation} markedId={markedId} messages={messages} />
       <ChatContainer messages={messages} markedId={markedId} />
-      <ChatMessage setMessages={setMessages} messages={messages} />
+      <ChatMessage messages={messages} />
     </View>
   );
 }

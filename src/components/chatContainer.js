@@ -8,7 +8,7 @@ import allActions from "../store/actions";
 export default function ChatContainer({ messages, markedId }) {
   const senderId = 'abc';
   const dispatch = useDispatch()
-  let listviewRef;
+  // let listviewRef;
 
   const handleSelectMessage = (id) => {
     dispatch(allActions.messages.markMessage(id));
@@ -52,7 +52,14 @@ export default function ChatContainer({ messages, markedId }) {
           <FlatList
             data={messages}
             renderItem={renderMessage}
-            keyExtractor={(item) => item?.id}
+            keyExtractor={(item, index) => {
+              return index;
+            }}
+            // getItemLayout = {(data, index) => ({
+            //   length: 70,
+            //   offset: 70 * index,
+            //   index
+            // })}
             // onContentSizeChange={() => { if (messages && messages.length > 0) listviewRef.scrollToEnd()}} // scroll it
             // ref={(ref) => {
             //   listviewRef = ref;
