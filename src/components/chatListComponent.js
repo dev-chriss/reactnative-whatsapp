@@ -170,7 +170,7 @@ const GetChatList = ({ item, navigation }) => (
     </View>
   </TouchableOpacity>
 );
-export default function ChatListComponent({navigation}) {
+export default ChatListComponent = ({navigation}) => {
   const searchPhrase = useSelector((state) => state.search.searchPhrase);
   const [filteredData, setFilteredData] = useState([]);
 

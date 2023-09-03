@@ -14,7 +14,7 @@ export default function ChatScreen({ navigation, route }) {
   const markedIdRedux = useSelector((state) => state.messages.markedId);
   const [markedId, setMarkedId] = useState('')
   const [messages, setMessages] = useState([])
-
+  
   useEffect(() => {
     // prevent repeated API call
     if (!(messagesRedux && messagesRedux.length)){
@@ -42,7 +42,8 @@ export default function ChatScreen({ navigation, route }) {
         source={require("../../assets/wpBackGround.jpg")}
         style={chatStyle.backGrounImage}
       />
-      <ChatHeader item={route.params.item} navigation={navigation} markedId={markedId} messages={messages} />
+      <ChatHeader item={route.params.item} navigation={navigation} 
+                  markedId={markedId} messages={messages} />
       <ChatContainer messages={messages} markedId={markedId} />
       <ChatMessage messages={messages} />
     </View>

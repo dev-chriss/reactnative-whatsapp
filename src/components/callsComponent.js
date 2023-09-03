@@ -205,7 +205,7 @@ import {
     )
   };
   
-  export default function CallsComponent() {
+  export default CallsComponent = () => {
     const searchPhrase = useSelector((state) => state.search.searchPhrase);
     const [filteredData, setFilteredData] = useState([]);
 

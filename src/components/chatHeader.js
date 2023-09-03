@@ -12,7 +12,7 @@ import {
   MenuTrigger,
 } from 'react-native-popup-menu';
 
-export default function ChatHeader({item, navigation, markedId, messages}) {
+export default ChatHeader = ({item, navigation, markedId, messages}) => {
   const dispatch = useDispatch()
   const [alreadyStared, setAlreadyStared] = useState(false)
 

@@ -5,10 +5,9 @@ import { chatStyle } from "../styles/chatStyle";
 import { useDispatch, useSelector } from 'react-redux'
 import allActions from "../store/actions";
 
-export default function ChatContainer({ messages, markedId }) {
+export default ChatContainer = ({ messages, markedId }) => {
   const senderId = 'abc';
   const dispatch = useDispatch()
-  // let listviewRef;
 
   const handleSelectMessage = (id) => {
     dispatch(allActions.messages.markMessage(id));
@@ -44,7 +43,7 @@ export default function ChatContainer({ messages, markedId }) {
         </View>
       </TouchableOpacity>
     );
-  }
+  };
 
   return (
       <View style={chatStyle.chatContainer}>
@@ -60,10 +59,6 @@ export default function ChatContainer({ messages, markedId }) {
             //   offset: 70 * index,
             //   index
             // })}
-            // onContentSizeChange={() => { if (messages && messages.length > 0) listviewRef.scrollToEnd()}} // scroll it
-            // ref={(ref) => {
-            //   listviewRef = ref;
-            // }}
           />
         </SafeAreaView>
       </View>
