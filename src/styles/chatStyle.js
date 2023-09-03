@@ -43,6 +43,7 @@ export const chatStyle = StyleSheet.create({
   nameButton:{
     width: "50%",
     height: "100%",
+    marginLeft:15
   },
   nameContent:{
     width: "100%",
@@ -62,7 +63,7 @@ export const chatStyle = StyleSheet.create({
     fontWeight:"500",
   },
   headerIcons:{
-    width: "30%",
+    width: "25%",
     height: "100%",
     flexDirection:"row",
     justifyContent:"space-between",
