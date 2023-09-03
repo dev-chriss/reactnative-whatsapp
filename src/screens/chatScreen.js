@@ -16,7 +16,7 @@ export default function ChatScreen({ navigation, route }) {
   const [messages, setMessages] = useState([])
 
   useEffect(() => {
-    // doesnt need repeat API call twice
+    // prevent repeated API call
     if (!(messagesRedux && messagesRedux.length)){
       fetch(`https://private-3f049-chatyoripe.apiary-mock.com/chats/questions`).then((data) => {
         return data.json().then((data)=>{

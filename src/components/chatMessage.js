@@ -37,15 +37,17 @@ export default function ChatMessage({ setMessages, messages }) {
       <TouchableOpacity
         style={chatStyle.voiceMessageButton}
         onPress={() => {
-          const now = new Date();
-          dispatch(allActions.messages.addMessage({ 
-            id: messages.length + 1, 
-            sender: 'abc', 
-            message: message, 
-            star: false,
-            time: `${now.getHours()}:${now.getMinutes()}`
-          }));
-          setMessage("");
+          if (message) {
+            const now = new Date();
+            dispatch(allActions.messages.addMessage({ 
+              id: messages.length + 1, 
+              sender: 'abc', 
+              message: message, 
+              star: false,
+              time: `${now.getHours()}:${now.getMinutes()}`
+            }));
+            setMessage("");
+          }
         }}
       >
         <MaterialIcons name={message ? "send" : "mic"} style={chatStyle.voiceMessageIcon} />

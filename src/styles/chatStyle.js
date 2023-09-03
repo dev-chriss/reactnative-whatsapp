@@ -88,18 +88,21 @@ export const chatStyle = StyleSheet.create({
     flexDirection:"row",
     justifyContent:"center",
     alignItems:"center",
+    paddingHorizontal: 10
   },
   messageBox:{
-    width:"85%",
+    width:"80%",
     height:"100%",
     backgroundColor:"#1f2c34",
     flexDirection:"row",
     alignItems:"center",
     borderRadius:30,
+    paddingHorizontal:5,
+    marginRight:10
   },
   messageButton:{
-    width: 45,
-    height:45,
+    width: 35,
+    height:35,
     borderRadius:30,
     justifyContent:"center",
     alignItems:"center",
@@ -191,6 +194,7 @@ export const chatStyle = StyleSheet.create({
     position:"absolute",
     zIndex:-1,
     width:width,
-    height:height,
+    // height:height,
+    height: '100%'
   }
 });

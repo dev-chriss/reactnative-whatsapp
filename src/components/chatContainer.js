@@ -1,15 +1,14 @@
-import { View, Text, FlatList, StyleSheet, TouchableOpacity,  } from "react-native";
-import React, { useState, useEffect } from "react";
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
+import React from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { chatStyle } from "../styles/chatStyle";
 import { useDispatch, useSelector } from 'react-redux'
 import allActions from "../store/actions";
 
-const now = new Date();
-
 export default function ChatContainer({ messages, markedId }) {
   const senderId = 'abc';
   const dispatch = useDispatch()
+  let listviewRef;
 
   const handleSelectMessage = (id) => {
     dispatch(allActions.messages.markMessage(id));
@@ -23,12 +22,12 @@ export default function ChatContainer({ messages, markedId }) {
         }}>
         <View
           style={
-            item?.sender === senderId ? chatStyle.chatBoxRight : chatStyle.chatBoxLeft
+            item.sender === senderId ? chatStyle.chatBoxRight : chatStyle.chatBoxLeft
           }
         >
             <View>
               <Text style={chatStyle.chatText}>
-                {item?.message}
+                {item.message}
               </Text>
             </View>
             <View style={chatStyle.chatBottomText}>
@@ -38,7 +37,7 @@ export default function ChatContainer({ messages, markedId }) {
                 }
               </View>
               <View>
-                <Text style={chatStyle.chatTime}>{item?.time} pm</Text>
+                <Text style={chatStyle.chatTime}>{item.time} pm</Text>
               </View>
             </View>
           
@@ -48,13 +47,19 @@ export default function ChatContainer({ messages, markedId }) {
   }
 
   return (
-    <View style={chatStyle.chatContainer}>
-      <FlatList
-        data={messages}
-        renderItem={renderMessage}
-        keyExtractor={(item) => item?.id}
-      />
-    </View>
+      <View style={chatStyle.chatContainer}>
+        <SafeAreaView style={{flex: 1}}>
+          <FlatList
+            data={messages}
+            renderItem={renderMessage}
+            keyExtractor={(item) => item?.id}
+            // onContentSizeChange={() => { if (messages && messages.length > 0) listviewRef.scrollToEnd()}} // scroll it
+            // ref={(ref) => {
+            //   listviewRef = ref;
+            // }}
+          />
+        </SafeAreaView>
+      </View>
   );
 
 }

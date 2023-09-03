@@ -4,7 +4,6 @@ const initialState = {
 };
 
 export const messagesReducer = (state = initialState, action) => {
-    
     switch(action.type){
         case "MARK_MESSAGE": {
             return {
@@ -25,9 +24,23 @@ export const messagesReducer = (state = initialState, action) => {
             }
         }
         case "ADD_MESSAGE": {
-            return {
-                ...state,
-                data: [...state.data, action.payload]
+            if (state.data) {
+                return {
+                    ...state,
+                    data: [...state.data, action.payload]
+                }
+            }
+            else {
+                return {
+                    ...state,
+                    data : [{
+                        id: action.payload.id, 
+                        sender: action.payload.sender, 
+                        message: action.payload.message, 
+                        star: false,
+                        time: action.payload.time
+                    }]
+                }
             }
         }
         case "UPDATE_MESSAGE": {
