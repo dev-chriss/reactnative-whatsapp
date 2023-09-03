@@ -1,27 +1,25 @@
 import { View, Text, FlatList, StyleSheet, TouchableOpacity,  } from "react-native";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { chatStyle } from "../styles/chatStyle";
 import { useDispatch, useSelector } from 'react-redux'
 import allActions from "../store/actions";
 
 const now = new Date();
 
-export default function ChatContainer({ messages }) {
-  const dispatch = useDispatch()
+export default function ChatContainer({ messages, markedId }) {
   const senderId = 'abc';
-  const messagesRedux = useSelector((state) => state.messages.data);
+  const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (messagesRedux) {
-      // console.log("\n\n\nmessageRedux:", messagesRedux)
-    }
-  }, [messagesRedux]);
+  const handleSelectMessage = (id) => {
+    dispatch(allActions.messages.markMessage(id));
+  };
 
   const renderMessage = ({ item }) => {
     return (
-      <TouchableOpacity onLongPress={() => {
-          // console.log('message longpress', item.id);
-          dispatch(allActions.messages.updateMessage(item.id));
+      <TouchableOpacity style={[chatStyle.chatLine, item.id === markedId ? chatStyle.chatHighlight : '']} 
+        onLongPress={() => {
+          handleSelectMessage(item.id)
         }}>
         <View
           style={
@@ -34,8 +32,14 @@ export default function ChatContainer({ messages }) {
               </Text>
             </View>
             <View style={chatStyle.chatBottomText}>
-              <Text style={chatStyle.chatMarked}>{item?.marked ? 'marked' : 'not marked'} </Text>
-              <Text style={chatStyle.chatTime}>{item?.time} pm</Text>
+              <View>
+                {item.star ? (<MaterialCommunityIcons name="star" style={chatStyle.chatMarked} /> ) :
+                  (<></>)
+                }
+              </View>
+              <View>
+                <Text style={chatStyle.chatTime}>{item?.time} pm</Text>
+              </View>
             </View>
           
         </View>
@@ -48,7 +52,7 @@ export default function ChatContainer({ messages }) {
       <FlatList
         data={messages}
         renderItem={renderMessage}
-        keyExtractor={(item) => item?.id.toString()}
+        keyExtractor={(item) => item?.id}
       />
     </View>
   );

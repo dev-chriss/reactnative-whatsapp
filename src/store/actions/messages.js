@@ -1,3 +1,16 @@
+const markMessage = (id) => {
+    return {
+        type: "MARK_MESSAGE",
+        payload: id
+    }
+}
+
+const markReset = () => {
+    return {
+        type: "MARK_RESET",
+    }
+}
+
 const setMessages = (messages) => {
     return {
         type: "SET_MESSAGES",
@@ -21,12 +34,13 @@ const updateMessage = (id) => {
 
 const resetMessages = () => {
     return {
-        type: "RESET_MESSAGES",
-        messages: []
+        type: "RESET_MESSAGES"
     }
 }
 
 export default {
+    markMessage,
+    markReset,
     setMessages,
     addMessage,
     updateMessage,

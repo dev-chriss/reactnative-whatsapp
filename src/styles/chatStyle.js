@@ -78,6 +78,7 @@ export const chatStyle = StyleSheet.create({
   headerIcon:{
     fontSize:25,
     color:"white",
+    marginRight: 10
   },
   messageContent:{
     width:"100%",
@@ -132,7 +133,7 @@ export const chatStyle = StyleSheet.create({
     height: "100%",
     position:"absolute",
     bottom:0,
-    paddingHorizontal:10,
+    // paddingHorizontal:10,
     paddingBottom:60,
     justifyContent:"flex-end",
     zIndex:-1,
@@ -145,7 +146,8 @@ export const chatStyle = StyleSheet.create({
     paddingVertical:5,
     paddingHorizontal: 10,
     alignSelf:"flex-end",
-    marginBottom:10,
+    marginHorizontal: 10
+    // marginBottom:10,
   },
   chatBoxLeft:{
     height:"auto",
@@ -154,7 +156,14 @@ export const chatStyle = StyleSheet.create({
     paddingVertical:5,
     paddingHorizontal: 10,
     alignSelf:"flex-start",
+    marginHorizontal: 10
+    // marginBottom:10,
+  },
+  chatLine:{
     marginBottom:10,
+  },
+  chatHighlight:{
+    backgroundColor: 'rgba(52, 52, 52, 0.8)'
   },
   chatText:{
     color:"white",
@@ -162,19 +171,20 @@ export const chatStyle = StyleSheet.create({
     fontWeight:"600",
   },
   chatBottomText:{
+    display: "flex",
     flexDirection:"row",
     justifyContent:"space-between",
+  },
+  chatMarked:{
+    left:0,
+    color:"#FFA500",
+    textAlign:"left",
+    fontSize: 16,
   },
   chatTime:{
     right:0,
     color:"#89bdb4",
     textAlign:"right",
-    fontSize: 12,
-  },
-  chatMarked:{
-    left:0,
-    color:"#89bdb4",
-    textAlign:"left",
     fontSize: 12,
   },
   backGrounImage:{
