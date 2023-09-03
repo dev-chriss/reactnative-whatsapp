@@ -7,13 +7,11 @@ import ChatMessage from "../components/chatMessage";
 import { useDispatch, useSelector } from 'react-redux'
 import allActions from "../store/actions";
 
-export default function ChatScreen({ navigation, route }) {
+export default ChatScreen = ({ navigation, route }) => {
   const dispatch = useDispatch()
   
   const messagesRedux = useSelector((state) => state.messages.data);
   const markedIdRedux = useSelector((state) => state.messages.markedId);
-  const [markedId, setMarkedId] = useState('')
-  const [messages, setMessages] = useState([])
   
   useEffect(() => {
     // prevent repeated API call
@@ -26,16 +24,6 @@ export default function ChatScreen({ navigation, route }) {
     }
   }, [])
 
-  useEffect(() => {
-    if (messagesRedux) {
-      setMessages(messagesRedux);
-    }
-  }, [messagesRedux]);
-
-  useEffect(() => {
-    setMarkedId(markedIdRedux || null);
-  }, [markedIdRedux]);
-
   return (
     <View style={chatStyle.container}>
       <Image
@@ -43,9 +31,9 @@ export default function ChatScreen({ navigation, route }) {
         style={chatStyle.backGrounImage}
       />
       <ChatHeader item={route.params.item} navigation={navigation} 
-                  markedId={markedId} messages={messages} />
-      <ChatContainer messages={messages} markedId={markedId} />
-      <ChatMessage messages={messages} />
+                  markedId={markedIdRedux} messages={messagesRedux} />
+      <ChatContainer messages={messagesRedux} markedId={markedIdRedux} />
+      <ChatMessage messages={messagesRedux} />
     </View>
   );
 }

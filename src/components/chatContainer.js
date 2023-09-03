@@ -1,5 +1,5 @@
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
-import React from "react";
+import React, {memo, useMemo, useCallback} from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { chatStyle } from "../styles/chatStyle";
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,6 +12,8 @@ export default ChatContainer = ({ messages, markedId }) => {
   const handleSelectMessage = (id) => {
     dispatch(allActions.messages.markMessage(id));
   };
+
+  const keyExtractor = (item, index) => { return index };
 
   const renderMessage = ({ item }) => {
     return (
@@ -51,9 +53,7 @@ export default ChatContainer = ({ messages, markedId }) => {
           <FlatList
             data={messages}
             renderItem={renderMessage}
-            keyExtractor={(item, index) => {
-              return index;
-            }}
+            keyExtractor={keyExtractor}
             // getItemLayout = {(data, index) => ({
             //   length: 70,
             //   offset: 70 * index,

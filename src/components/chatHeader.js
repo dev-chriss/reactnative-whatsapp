@@ -14,21 +14,21 @@ import {
 
 export default ChatHeader = ({item, navigation, markedId, messages}) => {
   const dispatch = useDispatch()
-  const [alreadyStared, setAlreadyStared] = useState(false)
+  const [alreadyBookmark, setAlreadyBookmark] = useState(false)
 
   useEffect(() => {
     if (markedId && messages) {
       const exist = messages.find(element => element.id === markedId && element.star === true)
       if (exist) { 
-        setAlreadyStared(true)
+        setAlreadyBookmark(true)
       }
       else { 
-        setAlreadyStared(false)
+        setAlreadyBookmark(false)
       }
     }
   }, [messages, markedId]);
 
-  const handleStar = () => {
+  const handleBookmark = () => {
     if (markedId) {
       dispatch(allActions.messages.updateMessage(markedId));
       dispatch(allActions.messages.markReset());
@@ -88,7 +88,7 @@ export default ChatHeader = ({item, navigation, markedId, messages}) => {
                 fontSize: 14
               },
             }}>
-              <MenuOption text={alreadyStared? 'Unbookmark' : 'Bookmark'} onSelect={() => handleStar()} />
+              <MenuOption text={alreadyBookmark? 'Unbookmark' : 'Bookmark'} onSelect={() => handleBookmark()} />
             </MenuOptions>
         </Menu>
         
