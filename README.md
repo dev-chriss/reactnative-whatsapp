@@ -30,12 +30,12 @@ npm start
 
 ## Screenshots
 
-1. ![first](./assets/wp1.JPG)
-1. ![second](./assets/wp2.JPG)
-1. ![first](./assets/wp3.JPG)
-1. ![second](./assets/wp4.JPG)
-1. ![first](./assets/wp5.JPG)
-1. ![second](./assets/wp6.JPG)
-1. ![first](./assets/wp7.png)
-1. ![second](./assets/wp8.png)
-1. ![second](./assets/wp9.png)
+![Alt text](./assets/wp1.JPG)
+![Alt text](./assets/wp2.JPG)
+![Alt text](./assets/wp3.JPG)
+![Alt text](./assets/wp4.JPG)
+![Alt text](./assets/wp5.JPG)
+![Alt text](./assets/wp6.JPG)
+![Alt text](./assets/wp7.png)
+![Alt text](./assets/wp8.png)
+![Alt text](./assets/wp9.png)
