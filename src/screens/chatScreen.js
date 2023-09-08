@@ -26,14 +26,14 @@ export default ChatScreen = ({ navigation, route }) => {
 
   return (
     <View style={chatStyle.container}>
-      <Image
+      {/* <Image
         source={require("../../assets/wpBackGround.jpg")}
         style={chatStyle.backGrounImage}
-      />
+      /> */}
       <ChatHeader item={route.params.item} navigation={navigation} 
                   markedId={markedIdRedux} messages={messagesRedux} />
       <ChatContainer messages={messagesRedux} markedId={markedIdRedux} />
-      <ChatMessage messages={messagesRedux} />
+      <ChatMessage messages={messagesRedux} markedId={markedIdRedux} />
     </View>
   );
 }

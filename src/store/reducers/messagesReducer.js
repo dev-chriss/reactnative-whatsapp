@@ -37,19 +37,19 @@ export const messagesReducer = (state = initialState, action) => {
                         id: action.payload.id, 
                         sender: action.payload.sender, 
                         message: action.payload.message, 
-                        star: false,
+                        emoji: null,
                         time: action.payload.time
                     }]
                 }
             }
         }
+
         case "UPDATE_MESSAGE": {
             return {
                 ...state,
                 data: state.data.map(item => {
-                    // for the sake of simplicity just allowed one marked highlight message
-                    if (item.id === action.payload) {
-                        return { ...item, star: !item.star }
+                    if (item.id === action.payload.id) {
+                        return { ...item, emoji: action.payload.emoji }
                     } 
                     return item
                 })

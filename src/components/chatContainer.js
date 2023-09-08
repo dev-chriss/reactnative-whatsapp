@@ -1,49 +1,57 @@
 import { View, Text, FlatList, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
-import React, {memo, useMemo, useCallback} from "react";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { chatStyle } from "../styles/chatStyle";
 import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from "react";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import EmojiPicker from 'rn-emoji-keyboard'
+import { chatStyle } from "../styles/chatStyle";
 import allActions from "../store/actions";
 
 export default ChatContainer = ({ messages, markedId }) => {
   const senderId = 'abc';
   const dispatch = useDispatch()
+  const [showEmoji, setShowEmoji] = useState(false)
 
   const handleSelectMessage = (id) => {
     dispatch(allActions.messages.markMessage(id));
+    if (!showEmoji) setShowEmoji(true)
   };
+
+  const handleSelectEmoji = (emojiObject) => {
+    dispatch(allActions.messages.updateMessage(markedId, emojiObject.emoji))
+  }
 
   const keyExtractor = (item, index) => { return index };
 
   const renderMessage = ({ item }) => {
     return (
-      <TouchableOpacity style={[chatStyle.chatLine, item.id === markedId ? chatStyle.chatHighlight : '']} 
-        onLongPress={() => {
-          handleSelectMessage(item.id)
-        }}>
-        <View
-          style={
-            item.sender === senderId ? chatStyle.chatBoxRight : chatStyle.chatBoxLeft
-          }
-        >
-            <View>
+      <View>
+        <View style={[ item.sender === senderId ? chatStyle.chatBoxLeft2 : chatStyle.chatBoxRight2, ]}>
+            <TouchableOpacity onLongPress={() => { handleSelectMessage(item.id) }}>
               <Text style={chatStyle.chatText}>
-                {item.message}
+                { item.message }
               </Text>
-            </View>
-            <View style={chatStyle.chatBottomText}>
-              <View>
-                {item.star ? (<MaterialCommunityIcons name="star" style={chatStyle.chatMarked} /> ) :
-                  (<></>)
-                }
+              <View style={chatStyle.chatBottomText}>
+              <View style={[item.emoji? chatStyle.emojiLayout : '',
+                            item.sender === senderId ? chatStyle.emojiRight : chatStyle.emojiLeft,
+                          ]}>
+                    { 
+                      item.emoji ? (
+                        <Text style={chatStyle.iconEmoji}>{item.emoji}</Text>
+                      ) : (<></>)
+                    }
               </View>
-              <View>
-                <Text style={chatStyle.chatTime}>{item.time} pm</Text>
+                <View><Text style={chatStyle.chatTime}>{item.time} pm</Text></View>
               </View>
-            </View>
-          
+            </TouchableOpacity>
+
+            
+
+            <View style={[ item.sender === senderId ? chatStyle.rightArrow : chatStyle.leftArrow ]}></View>
+            <View style={[ item.sender === senderId ? chatStyle.rightArrowOverlap : chatStyle.leftArrowOverlap  ]}></View>
+            
         </View>
-      </TouchableOpacity>
+        <View style={{ height:40 }}></View>
+      </View>
     );
   };
 
@@ -61,7 +69,13 @@ export default ChatContainer = ({ messages, markedId }) => {
             // })}
           />
         </SafeAreaView>
-      </View>
+        <EmojiPicker
+            onEmojiSelected={handleSelectEmoji}
+            open={showEmoji}
+            onClose={() => { setShowEmoji(false) }}
+            disabledCategories={['activities', 'flags', 'objects', 'symbols']}
+        />
+    </View>
   );
 
 }

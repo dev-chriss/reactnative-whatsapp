@@ -1,10 +1,10 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { chatStyle } from "../styles/chatStyle";
 import allActions from "../store/actions";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import {
   Menu,
   MenuOptions,
@@ -12,30 +12,12 @@ import {
   MenuTrigger,
 } from 'react-native-popup-menu';
 
-export default ChatHeader = ({item, navigation, markedId, messages}) => {
+export default ChatHeader = ({ item, navigation }) => {
   const dispatch = useDispatch()
-  const [alreadyBookmark, setAlreadyBookmark] = useState(false)
-
-  useEffect(() => {
-    if (markedId && messages) {
-      const exist = messages.find(element => element.id === markedId && element.star === true)
-      if (exist) { 
-        setAlreadyBookmark(true)
-      }
-      else { 
-        setAlreadyBookmark(false)
-      }
-    }
-  }, [messages, markedId]);
 
   const handleBookmark = () => {
-    if (markedId) {
-      dispatch(allActions.messages.updateMessage(markedId));
-      dispatch(allActions.messages.markReset());
-    }
-    else {
-      alert('There is no message selected')
-    }
+    // todo
+    alert('Bookmark selected')
   };
 
   return (
@@ -58,11 +40,11 @@ export default ChatHeader = ({item, navigation, markedId, messages}) => {
       </TouchableOpacity>
       <TouchableOpacity style={chatStyle.nameButton}
         onPress={() => {
-          navigation.navigate("Profile", {item:item});
+          navigation.navigate("Profile", { item:item });
         }}
       >
         <View style={chatStyle.nameContent}>
-          <Text style={chatStyle.nameText}>{item.name}</Text>
+          <Text style={chatStyle.nameText}>{ item.name }</Text>
           <Text style={chatStyle.lastSeen}>Last seen today at 4:13 pm</Text>
         </View>
       </TouchableOpacity>
@@ -88,7 +70,12 @@ export default ChatHeader = ({item, navigation, markedId, messages}) => {
                 fontSize: 14
               },
             }}>
-              <MenuOption text={alreadyBookmark? 'Unbookmark' : 'Bookmark'} onSelect={() => handleBookmark()} />
+              <MenuOption text='Bookmark' onSelect={() => handleBookmark()} />
+              <MenuOption text='Menu1'/>
+              <MenuOption text='Menu2'/>
+              <MenuOption text='Menu3'/>
+              <MenuOption text='Menu4'/>
+              <MenuOption text='Menu5'/>
             </MenuOptions>
         </Menu>
         

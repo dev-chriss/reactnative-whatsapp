@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { chatStyle } from "../styles/chatStyle";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,7 +13,7 @@ export default ChatMessage = ({ messages }) => {
     <View style={chatStyle.messageContent}>
       <View style={chatStyle.messageBox}>
         <TouchableOpacity style={chatStyle.messageButton}>
-          <MaterialIcons name="emoji-emotions" style={chatStyle.messageIcon} />
+            <MaterialIcons name="emoji-emotions" style={chatStyle.messageIcon} />
         </TouchableOpacity>
         <TextInput
           placeholder="Message"
@@ -43,7 +43,7 @@ export default ChatMessage = ({ messages }) => {
               id: messages.length + 1, 
               sender: 'abc', 
               message: message, 
-              star: false,
+              emoji: null,
               time: `${now.getHours()}:${now.getMinutes()}`
             }));
             setMessage("");

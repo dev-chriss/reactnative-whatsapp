@@ -1,9 +1,10 @@
 import { StyleSheet, Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
+
 export const chatStyle = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#121b22",
     alignItems: "center",
   },
   header: {
@@ -162,32 +163,43 @@ export const chatStyle = StyleSheet.create({
     alignSelf:"flex-start",
     marginHorizontal: 10
     // marginBottom:10,
-  },
-  chatLine:{
-    marginBottom:10,
-  },
-  chatHighlight:{
-    backgroundColor: 'rgba(52, 52, 52, 0.8)'
+
   },
   chatText:{
-    color:"white",
+    color:"#000",
     fontSize: 16,
     fontWeight:"600",
   },
   chatBottomText:{
     display: "flex",
-    flexDirection:"row",
+    flexDirection: 'row',
     justifyContent:"space-between",
+    alignItems:"center",
   },
-  chatMarked:{
-    left:0,
-    color:"#FFA500",
-    textAlign:"left",
-    fontSize: 16,
+  emojiLayout:{
+    top: 43,
+    width: 27,
+    height: 27,
+    borderRadius: 50,
+    backgroundColor: '#fff',
+  },
+  iconEmoji: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    borderRadius: 50,
+    textAlign:"center",
+    verticalAlign:"middle"
+  },
+  emojiLeft: {
+    left: 50
+  },
+  emojiRight: {
   },
   chatTime:{
     right:0,
-    color:"#89bdb4",
     textAlign:"right",
     fontSize: 12,
   },
@@ -197,5 +209,60 @@ export const chatStyle = StyleSheet.create({
     width:width,
     // height:height,
     height: '100%'
-  }
+  },
+  chatBoxLeft2: {
+    backgroundColor: "#E0F6CA",
+    padding:15,
+    marginLeft: '45%',
+    borderRadius: 5,
+    marginRight: "5%",
+    maxWidth: '50%',
+    alignSelf: 'flex-end',
+    borderRadius: 20,
+  },
+  chatBoxRight2: {
+    backgroundColor: "#fff",
+    padding:15,
+    borderRadius: 5,
+    marginLeft: "5%",
+    maxWidth: '50%',
+    alignSelf: 'flex-start',
+    borderRadius: 20,
+  },
+  leftArrow: {
+    position: "absolute",
+    backgroundColor: "#fff",
+    width: 30,
+    height: 25,
+    bottom: 0,
+    borderBottomRightRadius: 25,
+    left: -15,
+  },
+  rightArrow: {
+    position: "absolute",
+    backgroundColor: "#E0F6CA",
+    width: 30,
+    height: 25,
+    bottom: 0,
+    borderBottomLeftRadius: 25,
+    right: -15,
+  },
+  leftArrowOverlap: {
+    position: "absolute",
+    backgroundColor: "#121b22",
+    width: 20,
+    height: 35,
+    bottom: -6,
+    borderBottomRightRadius: 40,
+    left: -20,
+  },
+  rightArrowOverlap: {
+    position: "absolute",
+    backgroundColor: "#121b22",
+    width: 20,
+    height: 35,
+    bottom: -6,
+    borderBottomLeftRadius: 40,
+    right: -20,
+  },
 });

@@ -25,10 +25,10 @@ const addMessage = (message) => {
     }
 }
 
-const updateMessage = (id) => {
+const updateMessage = (id, emoji) => {
     return {
         type: "UPDATE_MESSAGE",
-        payload: id
+        payload: { id, emoji }
     }
 }
 
