@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import { StyleSheet, TextInput, View, Keyboard, Button } from "react-native";
-import { Feather, Entypo } from "@expo/vector-icons";
 import { useDispatch, useSelector } from 'react-redux'
 import allActions from "../store/actions";
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const searchBar = ({searchPhrase, setSearchPhrase, setClicked}) => {
   const dispatch = useDispatch()
@@ -12,16 +12,17 @@ const searchBar = ({searchPhrase, setSearchPhrase, setClicked}) => {
     <View style={styles.container}>
         <View style={styles.searchBar} >
             {/* search Icon */}
-            <Feather
-                name="arrow-left"
+            <Icon
+                name="arrow-back"
                 size={20}
-                color="black"
+                color="#075e54"
                 style={{ marginRight: 10 }}
                 onPress={() => {
                     Keyboard.dismiss();
                     setClicked(false);
                 }}
             />
+
             {/* Input field */}
             <TextInput
                 style={styles.input}
@@ -33,8 +34,8 @@ const searchBar = ({searchPhrase, setSearchPhrase, setClicked}) => {
                     dispatch(allActions.search.setSearchPhrase(event.nativeEvent.text));
                 }}
             />
-            {/* cross Icon, depending on whether the search bar is clicked or not */}
-            <Entypo name="cross" size={20} color="black" style={{ padding: 1 }} onPress={() => {
+            {/* depending on whether the search bar is clicked or not */}
+            <Icon name="close" size={20} color="#075e54" style={{ padding: 1 }} onPress={() => {
                 setText("");
                 setSearchPhrase("")
                 dispatch(allActions.search.resetSearchPhrase());
