@@ -6,7 +6,7 @@
 - Messages - "when you press a message" : You can send a message but it doesn't store.
 - Profile
 - Search
-- Bookmark
+- Reaction Bubble
 
 ## Initial Setup
 
